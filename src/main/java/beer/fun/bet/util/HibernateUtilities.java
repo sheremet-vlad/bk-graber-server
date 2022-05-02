@@ -1,5 +1,9 @@
 package beer.fun.bet.util;
 
+import beer.fun.bet.model.Bet;
+import beer.fun.bet.model.BetType;
+import beer.fun.bet.model.Match;
+import beer.fun.bet.model.Team;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -7,43 +11,55 @@ import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Service;
 
 @Service
-public class HibernateUtilities {
-    private static SessionFactory sessionFactory;
+public class HibernateUtilities
+{
 
-    public static synchronized SessionFactory getInstance() {
-        if (sessionFactory == null) {
-            Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
-            StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-                    .applySettings(configuration.getProperties());
-            sessionFactory = configuration
-                    .buildSessionFactory(builder.build());
-        }
-        return sessionFactory;
-    }
+   private static SessionFactory sessionFactory;
 
-    public static Session openSessionWithTransaction() {
-        SessionFactory sessionFactory = getInstance();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.setDefaultReadOnly(true);
+   public static synchronized SessionFactory getInstance()
+   {
+      if (sessionFactory == null)
+      {
+         Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
+         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
+                  .applySettings(configuration.getProperties());
+         sessionFactory = configuration
+                  .addAnnotatedClass(Bet.class)
+                  .addAnnotatedClass(BetType.class)
+                  .addAnnotatedClass(Match.class)
+                  .addAnnotatedClass(Team.class)
+                  .buildSessionFactory(builder.build());
+      }
+      return sessionFactory;
+   }
 
-        return session;
-    }
+   public static Session openSessionWithTransaction()
+   {
+      SessionFactory sessionFactory = getInstance();
+      Session session = sessionFactory.openSession();
+      session.beginTransaction();
+      session.setDefaultReadOnly(true);
 
-    public static void closeSessionAndRollbackTransaction(Session session) {
-        session.getTransaction().rollback();
-        session.close();
-    }
+      return session;
+   }
 
-    public static Session openSession() {
-        SessionFactory sessionFactory = getInstance();
-        Session session = sessionFactory.openSession();
+   public static void closeSessionAndRollbackTransaction(Session session)
+   {
+      session.getTransaction().rollback();
+      session.close();
+   }
 
-        return session;
-    }
+   public static Session openSession()
+   {
+      SessionFactory sessionFactory = getInstance();
+      Session session = sessionFactory.openSession();
 
-    public static void closeSession(Session session) {
-        session.close();
-    }
+      return session;
+   }
+
+   public static void closeSession(Session session)
+   {
+      session.close();
+   }
 }
 
