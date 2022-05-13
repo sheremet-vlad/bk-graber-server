@@ -1,0 +1,27 @@
+version: '3.3'
+
+services:
+  #service 2: definition of your spring-boot app
+  customerservice:                        #it is just a name, which will be used only in this file.
+    image: bkgraber               #name of the image after dockerfile executes
+    container_name: bkGraber  #name of the container created from docker image
+    build:
+      context: .                          #docker file path (. means root directory)
+      dockerfile: Dockerfile              #docker file name
+    ports:
+      - "8084:8080"                       #docker containter port with your os port
+    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://172.17.0.1:3306/graber?autoReconnect=true&useSSL=false
+    volumes:
+      - bind-log-file:/home/bkGraberServer/logs
+
+volumes:
+  bind-log-file:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/bkGraberServer/logs

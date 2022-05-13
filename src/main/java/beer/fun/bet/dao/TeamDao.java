@@ -1,11 +1,11 @@
 package beer.fun.bet.dao;
 
 import beer.fun.bet.model.Team;
-import org.hibernate.Session;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-public interface TeamDao extends ModelDao<Team>
+@Repository
+public interface TeamDao extends JpaRepository<Team, Integer>
 {
-   List<Team> findAllTeams(final Session session);
+
 }
