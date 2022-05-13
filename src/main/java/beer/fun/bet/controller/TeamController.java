@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/teams")
+@RequestMapping(value = "/teams1")
 public class TeamController
 {
     @Resource
