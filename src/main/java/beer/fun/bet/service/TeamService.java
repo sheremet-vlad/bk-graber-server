@@ -1,12 +1,8 @@
 package beer.fun.bet.service;
 
+import beer.fun.bet.form.TeamForm;
 import beer.fun.bet.model.Team;
 
-import java.util.List;
-
-public interface TeamService
+public interface TeamService extends DefaultService<Team, TeamForm>
 {
-   List<Team> getTeams();
-
-   Team createTeam(final String name);
 }

@@ -1,6 +1,8 @@
 package beer.fun.bet.data;
 
-public class TeamData extends Data
+import java.util.Objects;
+
+public class BetTypeData extends Data
 {
    private int id;
    private String name;
@@ -33,14 +35,11 @@ public class TeamData extends Data
       if (o == null || getClass() != o.getClass())
          return false;
 
-      TeamData team = (TeamData) o;
+      BetTypeData team = (BetTypeData) o;
 
       if (id != team.id)
          return false;
-      if (name != null ? !name.equals(team.name) : team.name != null)
-         return false;
-
-      return true;
+      return Objects.equals(name, team.name);
    }
 
    @Override

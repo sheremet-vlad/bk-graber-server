@@ -22,17 +22,17 @@ public class TeamFacadeImpl implements TeamFacade
    private TeamConverter teamConverter;
 
    @Override
-   public List<TeamData> getAllTeams()
+   public List<TeamData> getAll()
    {
-      return teamService.getTeams().stream()
+      return teamService.getAll().stream()
                .map(team -> teamConverter.convert(team))
                .collect(Collectors.toList());
    }
 
    @Override
-   public TeamData createNewTeam(final TeamForm form)
+   public TeamData create(final TeamForm form)
    {
-      final Team team =  teamService.createTeam(form.getName());
+      final Team team =  teamService.create(form);
 
       return team == null ? null : teamConverter.convert(team);
    }

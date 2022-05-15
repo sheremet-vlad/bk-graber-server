@@ -5,7 +5,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "bet", schema = "graber")
-public class Bet
+public class Bet extends Model
 {
    private int id;
 

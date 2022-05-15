@@ -4,13 +4,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "bet_type", schema = "graber", catalog = "")
-public class BetType
+public class BetType extends Model
 {
    private int id;
 
    private String name;
 
    @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "id")
    public int getId()
    {

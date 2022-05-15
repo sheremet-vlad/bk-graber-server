@@ -2,7 +2,7 @@ package beer.fun.bet.form;
 
 import java.util.Objects;
 
-public class TeamForm extends Form
+public class BetTypeForm extends Form
 {
    private String name;
 
@@ -23,7 +23,7 @@ public class TeamForm extends Form
          return true;
       if (o == null || getClass() != o.getClass())
          return false;
-      TeamForm teamForm = (TeamForm) o;
+      BetTypeForm teamForm = (BetTypeForm) o;
       return Objects.equals(name, teamForm.name);
    }
 

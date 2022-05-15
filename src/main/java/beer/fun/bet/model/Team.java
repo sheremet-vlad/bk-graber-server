@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "team", schema = "graber")
-public class Team
+public class Team extends Model
 {
    private int id;
 

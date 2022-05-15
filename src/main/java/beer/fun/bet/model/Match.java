@@ -10,7 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "match", schema = "graber")
-public class Match
+public class Match extends Model
 {
    private int id;
    private String name;

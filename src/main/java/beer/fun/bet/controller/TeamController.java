@@ -23,12 +23,12 @@ public class TeamController
 
     @GetMapping
     public List<TeamData> getTeams() {
-        return teamFacade.getAllTeams();
+        return teamFacade.getAll();
     }
 
     @PostMapping(value = "/add")
     public ResponseEntity<TeamData> createTeam(@RequestBody final TeamForm teamForm) {
-        final TeamData teamData = teamFacade.createNewTeam(teamForm);
+        final TeamData teamData = teamFacade.create(teamForm);
 
         return teamData != null ?
                  new ResponseEntity<>(teamData, HttpStatus.CREATED) :
