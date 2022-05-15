@@ -43,7 +43,7 @@ create table if not exists bet_type
 alter table bet_type
     add primary key (id);
 
-create table if not exists `match`
+create table if not exists `matches`
 (
     id   int unsigned auto_increment,
     name varchar(90) not null,
@@ -51,7 +51,7 @@ create table if not exists `match`
     unique (id)
     );
 
-alter table `match`
+alter table `matches`
     add primary key (id);
 
 create table if not exists team
